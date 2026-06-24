@@ -8,7 +8,7 @@ import org.springframework.test.annotation.DirtiesContext;
 @SpringBootTest
 @EmbeddedKafka(
         partitions = 1,
-        topics = {"pedidos.pedido-despachado"},
+        topics = {"pedidos.pedido-despachado", "almoxarifado.pedido-reservado"},
         bootstrapServersProperty = "spring.kafka.bootstrap-servers"
 )
 @DirtiesContext
