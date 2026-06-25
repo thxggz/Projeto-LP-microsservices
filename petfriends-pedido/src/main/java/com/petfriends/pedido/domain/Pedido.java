@@ -57,6 +57,10 @@ public class Pedido {
         this.motivoRejeicao = motivo;
     }
 
+    public void marcarComoEntregue() {
+        this.status = StatusPedido.ENTREGUE;
+    }
+
     public UUID getId() { return id; }
     public UUID getCorrelationId() { return correlationId; }
     public UUID getClienteId() { return clienteId; }
