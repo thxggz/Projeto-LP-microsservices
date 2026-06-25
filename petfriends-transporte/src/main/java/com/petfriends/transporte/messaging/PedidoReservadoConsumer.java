@@ -54,6 +54,7 @@ public class PedidoReservadoConsumer {
 
         Remessa remessa = new Remessa(
                 UUID.randomUUID(),
+                evento.correlationId(),
                 evento.pedidoId(),
                 endereco,
                 gerarCodigoRastreio());

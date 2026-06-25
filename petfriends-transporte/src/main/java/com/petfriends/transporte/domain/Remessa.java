@@ -23,6 +23,9 @@ public class Remessa {
     private UUID id;
 
     @Column(nullable = false)
+    private UUID correlationId;
+
+    @Column(nullable = false)
     private UUID pedidoId;
 
     @Embedded
@@ -40,7 +43,7 @@ public class Remessa {
     protected Remessa() {
     }
 
-    public Remessa(UUID id, UUID pedidoId, EnderecoEntrega enderecoEntrega, String codigoRastreio) {
+    public Remessa(UUID id, UUID correlationId, UUID pedidoId, EnderecoEntrega enderecoEntrega, String codigoRastreio) {
         if (pedidoId == null) {
             throw new IllegalArgumentException("pedidoId é obrigatório");
         }
@@ -51,6 +54,7 @@ public class Remessa {
             throw new IllegalArgumentException("Código de rastreio é obrigatório");
         }
         this.id = id;
+        this.correlationId = correlationId;
         this.pedidoId = pedidoId;
         this.enderecoEntrega = enderecoEntrega;
         this.codigoRastreio = codigoRastreio;
@@ -80,6 +84,7 @@ public class Remessa {
     }
 
     public UUID getId() { return id; }
+    public UUID getCorrelationId() { return correlationId; }
     public UUID getPedidoId() { return pedidoId; }
     public EnderecoEntrega getEnderecoEntrega() { return enderecoEntrega; }
     public String getCodigoRastreio() { return codigoRastreio; }

@@ -1,6 +1,7 @@
 package com.petfriends.almoxarifado.messaging;
 
 import com.petfriends.almoxarifado.messaging.event.PedidoFechadoEvent;
+import com.petfriends.almoxarifado.messaging.event.PedidoRejeitadoEvent;
 import com.petfriends.almoxarifado.messaging.event.PedidoReservadoEvent;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -38,6 +39,21 @@ public class KafkaProducerConfig {
     @Bean
     public KafkaTemplate<String, PedidoReservadoEvent> pedidoReservadoKafkaTemplate() {
         return new KafkaTemplate<>(pedidoReservadoProducerFactory());
+    }
+
+    @Bean
+    public ProducerFactory<String, PedidoRejeitadoEvent> pedidoRejeitadoProducerFactory() {
+        Map<String, Object> props = new HashMap<>();
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        props.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, false);
+        return new DefaultKafkaProducerFactory<>(props);
+    }
+
+    @Bean
+    public KafkaTemplate<String, PedidoRejeitadoEvent> pedidoRejeitadoKafkaTemplate() {
+        return new KafkaTemplate<>(pedidoRejeitadoProducerFactory());
     }
 
     @Bean

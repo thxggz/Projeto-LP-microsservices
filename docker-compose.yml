@@ -1,4 +1,4 @@
-# Sobe a infraestrutura para rodar o projeto: Kafka + Zipkin.
+
 # Use:  docker compose up -d
 services:
   zookeeper:

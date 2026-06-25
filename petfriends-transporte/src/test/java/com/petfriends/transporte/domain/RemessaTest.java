@@ -13,7 +13,7 @@ class RemessaTest {
         EnderecoEntrega endereco = new EnderecoEntrega(
                 "Rua das Flores", "123", null,
                 "Centro", "São Paulo", "SP", "01001-000");
-        return new Remessa(UUID.randomUUID(), UUID.randomUUID(), endereco, "PF1A2B3C4DBR");
+        return new Remessa(UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID(), endereco, "PF1A2B3C4DBR");
     }
 
     @Test
@@ -31,7 +31,7 @@ class RemessaTest {
                 "Bela Vista", "São Paulo", "SP", "01310-100");
         String codigoRastreio = "PF9X8Y7Z6WBR";
 
-        Remessa remessa = new Remessa(UUID.randomUUID(), pedidoId, endereco, codigoRastreio);
+        Remessa remessa = new Remessa(UUID.randomUUID(), UUID.randomUUID(), pedidoId, endereco, codigoRastreio);
 
         assertThat(remessa.getPedidoId()).isEqualTo(pedidoId);
         assertThat(remessa.getCodigoRastreio()).isEqualTo(codigoRastreio);
@@ -97,7 +97,7 @@ class RemessaTest {
         EnderecoEntrega endereco = new EnderecoEntrega(
                 "Rua A", "1", null, "Bairro", "Cidade", "SP", "01001-000");
 
-        assertThatThrownBy(() -> new Remessa(UUID.randomUUID(), null, endereco, "PF111111BR"))
+        assertThatThrownBy(() -> new Remessa(UUID.randomUUID(), UUID.randomUUID(), null, endereco, "PF111111BR"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("pedidoId");
     }
@@ -107,7 +107,7 @@ class RemessaTest {
         EnderecoEntrega endereco = new EnderecoEntrega(
                 "Rua A", "1", null, "Bairro", "Cidade", "SP", "01001-000");
 
-        assertThatThrownBy(() -> new Remessa(UUID.randomUUID(), UUID.randomUUID(), endereco, ""))
+        assertThatThrownBy(() -> new Remessa(UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID(), endereco, ""))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("rastreio");
     }

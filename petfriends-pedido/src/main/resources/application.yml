@@ -1,11 +1,11 @@
 server:
-  port: 8083
+  port: 8082
 
 spring:
   application:
-    name: petfriends-almoxarifado
+    name: petfriends-pedido
   datasource:
-    url: jdbc:h2:mem:almoxarifado;DB_CLOSE_DELAY=-1
+    url: jdbc:h2:mem:pedido;DB_CLOSE_DELAY=-1
     driver-class-name: org.h2.Driver
     username: sa
     password:
@@ -21,14 +21,13 @@ spring:
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
-      group-id: petfriends-almoxarifado
+      group-id: petfriends-pedido
       auto-offset-reset: earliest
 
-# Observabilidade -> exporta traces para o Zipkin (QUESTÃO 4.3)
 management:
   tracing:
     sampling:
-      probability: 1.0          # amostra 100% das requisições (ok p/ dev)
+      probability: 1.0
   zipkin:
     tracing:
       endpoint: http://localhost:9411/api/v2/spans

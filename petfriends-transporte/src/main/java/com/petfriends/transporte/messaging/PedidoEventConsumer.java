@@ -48,6 +48,7 @@ public class PedidoEventConsumer {
 
         Remessa remessa = new Remessa(
                 UUID.randomUUID(),
+                UUID.randomUUID(),
                 evento.pedidoId(),
                 endereco,
                 gerarCodigoRastreio());

@@ -123,6 +123,6 @@ class PedidoReservadoConsumerTest {
                 new com.petfriends.transporte.domain.EnderecoEntrega(
                         "Rua das Flores", "123", null,
                         "Centro", "São Paulo", "SP", "01001-000");
-        return new Remessa(UUID.randomUUID(), pedidoId, endereco, "PF11223344BR");
+        return new Remessa(UUID.randomUUID(), UUID.randomUUID(), pedidoId, endereco, "PF11223344BR");
     }
 }
